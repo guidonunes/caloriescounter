@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CaloriescounterApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CaloriescounterApplication.class, args);
+        SpringApplication.run(CaloriescounterApplication.class, args);
 	}
-
 }
