@@ -11,11 +11,11 @@ public class HelloWorldController {
 
     @GetMapping("/english")
     public String getSayHello() {
-        return "Hello World!";
+        return "<h1>Hello World!</h1>";
     }
 
     @GetMapping("/deutsch")
     public String getSagHallo() {
-        return "Servus zusammen!";
+        return "<h1>Servus zusammen!</h1>";
     }
 }
