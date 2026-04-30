@@ -15,11 +15,11 @@ public class User {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "seq_users"
+            generator = "SEQ_USERS"
     )
     @SequenceGenerator(
-            name = "seq_users",
-            sequenceName = "seq_users",
+            name = "SEQ_USERS",
+            sequenceName = "SEQ_USERS",
             allocationSize = 1
     )
     @Column(name="user_id")
