@@ -1,5 +1,6 @@
 package br.com.fiap.caloriescounter.service;
 
+import br.com.fiap.caloriescounter.dto.ShowUserDTO;
 import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +18,23 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User getUserById(Long id){
+    public ShowUserDTO getUserById(Long id){
         Optional<User> optionalUser =userRepository.findById(id);
 
+
         if(optionalUser.isPresent()){
-            return optionalUser.get();
+            return new ShowUserDTO(optionalUser.get());
         } else {
             throw new RuntimeException("User not found");
         }
     }
 
-    public List<User> getAllUsers(){
-        return userRepository.findAll();
+    public List<ShowUserDTO> getAllUsers(){
+        return userRepository
+                .findAll()
+                .stream()
+                .map(ShowUserDTO::new)
+                .toList();
     }
 
     public void deleteUserById(Long id){

@@ -1,12 +1,15 @@
 package br.com.fiap.caloriescounter.controller;
 
 
+import br.com.fiap.caloriescounter.dto.ShowUserDTO;
 import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.repository.UserRepository;
 import br.com.fiap.caloriescounter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -30,8 +33,12 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public User getUserById(@PathVariable Long id){
-        return userService.getUserById(id);
+    public ResponseEntity<ShowUserDTO> getUserById(@PathVariable Long id){
+        try {
+            return ResponseEntity.ok(userService.getUserById(id));
+        } catch (Exception ex) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @DeleteMapping("/users/{userId}")
