@@ -1,6 +1,7 @@
 package br.com.fiap.caloriescounter.controller;
 
 
+import br.com.fiap.caloriescounter.dto.RegisterUserDTO;
 import br.com.fiap.caloriescounter.dto.ShowUserDTO;
 import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.repository.UserRepository;
@@ -22,7 +23,7 @@ public class UserController {
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public User save(@RequestBody User user){
+    public ShowUserDTO save(@RequestBody RegisterUserDTO user){
         return userService.saveUser(user);
     }
 

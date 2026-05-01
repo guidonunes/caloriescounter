@@ -1,8 +1,10 @@
 package br.com.fiap.caloriescounter.service;
 
+import br.com.fiap.caloriescounter.dto.RegisterUserDTO;
 import br.com.fiap.caloriescounter.dto.ShowUserDTO;
 import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.repository.UserRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public User saveUser(User user){
-        return userRepository.save(user);
+    public ShowUserDTO saveUser(RegisterUserDTO userDTO){
+        User user = new User();
+        BeanUtils.copyProperties(userDTO, user);
+        User userSaved = userRepository.save(user);
+        return new ShowUserDTO(userSaved);
     }
 
     public ShowUserDTO getUserById(Long id){
