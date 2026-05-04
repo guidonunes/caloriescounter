@@ -8,18 +8,16 @@ public record RegisterFoodDTO(
         String portionWeight,
         Double protein,
         Double carbs,
-        Double fats,
-        Double totalCalories
+        Double fats
 ) {
-    public RegisterFoodDTO(Food food) {
-        this (
-                food.getFoodId(),
-                food.getName(),
-                food.getPortionWeight(),
-                food.getProtein(),
-                food.getCarbs(),
-                food.getFats(),
-                food.getTotalCalories()
-        );
-    }
+//    public RegisterFoodDTO(Food food) {
+//        this (
+//                food.getFoodId(),
+//                food.getName(),
+//                food.getPortionWeight(),
+//                food.getProtein(),
+//                food.getCarbs(),
+//                food.getFats()
+//        );
+//    }
 }

@@ -86,7 +86,7 @@ public class FoodService {
         }
     }
 
-    public Double calculateCalories(Double protein, Double carbs, Double fats) {
+    private Double calculateCalories(Double protein, Double carbs, Double fats) {
         Double calories = (protein * 4) + (carbs * 4)  + (fats * 9);
         return calories;
     }
