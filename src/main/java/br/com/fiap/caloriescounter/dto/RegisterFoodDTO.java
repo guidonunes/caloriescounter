@@ -9,15 +9,4 @@ public record RegisterFoodDTO(
         Double protein,
         Double carbs,
         Double fats
-) {
-//    public RegisterFoodDTO(Food food) {
-//        this (
-//                food.getFoodId(),
-//                food.getName(),
-//                food.getPortionWeight(),
-//                food.getProtein(),
-//                food.getCarbs(),
-//                food.getFats()
-//        );
-//    }
-}
+) { }
