@@ -86,6 +86,16 @@ public class FoodService {
         }
     }
 
+    public ShowFoodDTO findFoodByName(String name) {
+        Optional<Food> food = foodRepository.findByName(name);
+
+        if (food.isPresent()) {
+            return new ShowFoodDTO(food.get());
+        } else {
+            throw new RuntimeException("Food not found");
+        }
+    }
+
     private Double calculateCalories(Double protein, Double carbs, Double fats) {
         Double calories = (protein * 4) + (carbs * 4)  + (fats * 9);
         return calories;

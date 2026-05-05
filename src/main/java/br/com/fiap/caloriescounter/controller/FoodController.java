@@ -4,6 +4,7 @@ import br.com.fiap.caloriescounter.dto.RegisterFoodDTO;
 import br.com.fiap.caloriescounter.dto.ShowFoodDTO;
 import br.com.fiap.caloriescounter.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,15 @@ public class FoodController {
     public ResponseEntity<ShowFoodDTO> findFoodById(@PathVariable Long foodId) {
         try {
             return ResponseEntity.ok(foodService.findFoodById(foodId));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping(value ="/foods", params = "name")
+    public ResponseEntity<ShowFoodDTO> findByName(@Param("name") String name) {
+        try {
+            return ResponseEntity.ok(foodService.findFoodByName(name));
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
