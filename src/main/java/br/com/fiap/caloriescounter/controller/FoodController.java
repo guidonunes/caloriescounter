@@ -32,7 +32,7 @@ public class FoodController {
     @GetMapping("/foods")
     @ResponseStatus(HttpStatus.OK)
     public Page<ShowFoodDTO> findAll(
-            @PageableDefault(size=2, page=0)
+            @PageableDefault(size=20, page=0)
             Pageable pageable
     ) {
         return foodService.findAllFoods(pageable);
