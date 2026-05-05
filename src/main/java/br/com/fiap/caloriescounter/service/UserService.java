@@ -2,6 +2,7 @@ package br.com.fiap.caloriescounter.service;
 
 import br.com.fiap.caloriescounter.dto.RegisterUserDTO;
 import br.com.fiap.caloriescounter.dto.ShowUserDTO;
+import br.com.fiap.caloriescounter.exception.UserNotFoundException;
 import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.repository.UserRepository;
 import org.springframework.beans.BeanUtils;
@@ -30,7 +31,7 @@ public class UserService {
         if(optionalUser.isPresent()){
             return new ShowUserDTO(optionalUser.get());
         } else {
-            throw new RuntimeException("User not found");
+            throw new UserNotFoundException("User not found in the database");
         }
     }
 
