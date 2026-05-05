@@ -17,5 +17,4 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
             @Param("minimum") Double minimum,
             @Param("maximum") Double maximum
     );
-
 }

@@ -22,6 +22,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    //CREATE
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
     public ShowUserDTO save(
@@ -31,6 +32,7 @@ public class UserController {
         return userService.saveUser(user);
     }
 
+    //READ
     @GetMapping("/users")
     @ResponseStatus(HttpStatus.OK)
     public List<ShowUserDTO> getAllUsers() {
@@ -47,12 +49,13 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @DeleteMapping("/users/{userId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long userId){
-        userService.deleteUserById(userId);
+    @RequestMapping(value="/users", params="email")
+    @ResponseStatus(HttpStatus.OK)
+    public ShowUserDTO getUserByEmail(String email){
+        return userService.getUserByEmail(email);
     }
 
+    //UPDATE
     @PutMapping("/users")
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(
@@ -60,5 +63,12 @@ public class UserController {
             @RequestBody User user
     ){
         return userService.updateUser(user);
+    }
+
+    //DELETE
+    @DeleteMapping("/users/{userId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long userId){
+        userService.deleteUserById(userId);
     }
 }
