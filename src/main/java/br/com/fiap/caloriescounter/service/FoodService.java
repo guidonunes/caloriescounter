@@ -96,6 +96,14 @@ public class FoodService {
         }
     }
 
+    public List<ShowFoodDTO> listFoodByCalorieRange(Double minimum, Double maximum) {
+        return foodRepository
+                .listFoodByCalorieRange(minimum, maximum)
+                .stream()
+                .map(ShowFoodDTO::new)
+                .toList();
+    }
+
     private Double calculateCalories(Double protein, Double carbs, Double fats) {
         Double calories = (protein * 4) + (carbs * 4)  + (fats * 9);
         return calories;

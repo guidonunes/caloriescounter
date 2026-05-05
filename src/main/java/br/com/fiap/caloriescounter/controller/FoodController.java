@@ -50,6 +50,15 @@ public class FoodController {
         }
     }
 
+    @RequestMapping(value="/foods", params = {"minimum", "maximum"})
+    @ResponseStatus(HttpStatus.OK)
+    public List<ShowFoodDTO> listFoodByCalorieRange(
+            @RequestParam Double minimum,
+            @RequestParam Double maximum
+    ) {
+        return foodService.listFoodByCalorieRange(minimum, maximum);
+    }
+
     //UPDATE
     @PutMapping("/foods")
     public ResponseEntity<ShowFoodDTO> update(@RequestBody RegisterFoodDTO food) {
