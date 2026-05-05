@@ -32,9 +32,9 @@ public class FoodController {
     }
 
     @GetMapping("/foods/{foodId}")
-    public ResponseEntity<ShowFoodDTO> findFoodById(@PathVariable Long id) {
+    public ResponseEntity<ShowFoodDTO> findFoodById(@PathVariable Long foodId) {
         try {
-            return ResponseEntity.ok(foodService.findFoodById(id));
+            return ResponseEntity.ok(foodService.findFoodById(foodId));
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
