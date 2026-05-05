@@ -59,6 +59,14 @@ public class FoodController {
         return foodService.listFoodByCalorieRange(minimum, maximum);
     }
 
+    @RequestMapping(value ="/foods", params = "caloriesLessThan")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ShowFoodDTO> listFoodByCalorieLessThan(
+            @RequestParam Double caloriesLessThan
+    ) {
+        return foodService.getFoodByTotalCaloriesLessThan(caloriesLessThan);
+    }
+
     //UPDATE
     @PutMapping("/foods")
     public ResponseEntity<ShowFoodDTO> update(@RequestBody RegisterFoodDTO food) {

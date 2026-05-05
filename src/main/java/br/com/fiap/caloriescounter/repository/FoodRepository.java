@@ -1,5 +1,6 @@
 package br.com.fiap.caloriescounter.repository;
 
+import br.com.fiap.caloriescounter.dto.ShowFoodDTO;
 import br.com.fiap.caloriescounter.model.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,6 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
             @Param("minimum") Double minimum,
             @Param("maximum") Double maximum
     );
+
+    List<ShowFoodDTO> findByTotalCaloriesLessThan(Double calories);
 }

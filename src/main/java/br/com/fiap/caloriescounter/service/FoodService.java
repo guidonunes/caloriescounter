@@ -53,6 +53,10 @@ public class FoodService {
                 .toList();
     }
 
+    public List<ShowFoodDTO> getFoodByTotalCaloriesLessThan(Double calories) {
+        return foodRepository.findByTotalCaloriesLessThan(calories);
+    }
+
     //UPDATE
     public ShowFoodDTO update(RegisterFoodDTO foodDTO) {
         Optional<Food> foodOptional = foodRepository.findById(foodDTO.foodId());
