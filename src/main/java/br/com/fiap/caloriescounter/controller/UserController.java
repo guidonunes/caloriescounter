@@ -6,6 +6,7 @@ import br.com.fiap.caloriescounter.dto.ShowUserDTO;
 import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.repository.UserRepository;
 import br.com.fiap.caloriescounter.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class UserController {
 
     @PostMapping("/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public ShowUserDTO save(@RequestBody RegisterUserDTO user){
+    public ShowUserDTO save(@Valid @RequestBody RegisterUserDTO user){
         return userService.saveUser(user);
     }
 
