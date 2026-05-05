@@ -6,6 +6,8 @@ import br.com.fiap.caloriescounter.model.Food;
 import br.com.fiap.caloriescounter.repository.FoodRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -45,12 +47,10 @@ public class FoodService {
         }
     }
 
-    public List<ShowFoodDTO> findAllFoods() {
+    public Page<ShowFoodDTO> findAllFoods(Pageable pageable) {
         return foodRepository
-                .findAll()
-                .stream()
-                .map(ShowFoodDTO::new)
-                .toList();
+                .findAll(pageable)
+                .map(ShowFoodDTO::new);
     }
 
     public List<ShowFoodDTO> getFoodByTotalCaloriesLessThan(Double calories) {
