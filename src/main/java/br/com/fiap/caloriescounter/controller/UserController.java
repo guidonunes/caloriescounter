@@ -49,11 +49,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
-    @RequestMapping(value="/users", params="email")
-    @ResponseStatus(HttpStatus.OK)
-    public ShowUserDTO getUserByEmail(String email){
-        return userService.getUserByEmail(email);
-    }
+//    @RequestMapping(value="/users", params="email")
+//    @ResponseStatus(HttpStatus.OK)
+//    public ShowUserDTO getUserByEmail(String email){
+//        return userService.getUserByEmail(email);
+//    }
 
     //UPDATE
     @PutMapping("/users")

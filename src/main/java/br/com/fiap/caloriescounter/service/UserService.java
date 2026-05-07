@@ -63,13 +63,13 @@ public class UserService {
         }
     }
 
-    public ShowUserDTO getUserByEmail(String email){
-        Optional<User> optionalUser = userRepository.findByEmail(email);
-
-        if(optionalUser.isPresent()){
-            return new ShowUserDTO(optionalUser.get());
-        } else {
-            throw new RuntimeException("Ouch, user not found!");
-        }
-    }
+//    public ShowUserDTO getUserByEmail(String email){
+//        Optional<User> optionalUser = userRepository.findByEmail(email);
+//
+//        if(optionalUser.isPresent()){
+//            return new ShowUserDTO(optionalUser.get());
+//        } else {
+//            throw new RuntimeException("Ouch, user not found!");
+//        }
+//    }
 }
