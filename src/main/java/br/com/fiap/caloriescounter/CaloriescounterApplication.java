@@ -1,5 +1,7 @@
 package br.com.fiap.caloriescounter;
 
+import br.com.fiap.caloriescounter.model.User;
+import br.com.fiap.caloriescounter.model.UserRole;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,5 +18,6 @@ public class CaloriescounterApplication {
         System.setProperty("DB_PASSWORD", dotenv.get("DB_PASSWORD", ""));
 
         SpringApplication.run(CaloriescounterApplication.class, args);
+
 	}
 }
