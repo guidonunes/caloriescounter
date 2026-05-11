@@ -1,6 +1,7 @@
 package br.com.fiap.caloriescounter.dto;
 
 import br.com.fiap.caloriescounter.model.User;
+import br.com.fiap.caloriescounter.model.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -17,7 +18,8 @@ public record RegisterUserDTO(
 
         @NotBlank(message = "Password cannot be blank.")
         @Size(min = 6, max = 20, message = "Password length must be between 6 and 20 characters.")
-        String password
+        String password,
+        UserRole role
 ) {
 
 }
