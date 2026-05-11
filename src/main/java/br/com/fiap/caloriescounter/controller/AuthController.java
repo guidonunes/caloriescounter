@@ -3,6 +3,7 @@ package br.com.fiap.caloriescounter.controller;
 import br.com.fiap.caloriescounter.config.security.TokenService;
 import br.com.fiap.caloriescounter.dto.RegisterUserDTO;
 import br.com.fiap.caloriescounter.dto.ShowUserDTO;
+import br.com.fiap.caloriescounter.dto.TokenDTO;
 import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.service.UserService;
 import jakarta.validation.Valid;
@@ -42,7 +43,7 @@ public class AuthController {
 
         String token = tokenService.generateToken((User) auth.getPrincipal());
 
-        return ResponseEntity.ok(token);
+        return ResponseEntity.ok(new TokenDTO(token));
     }
 
     @PostMapping("/register")
