@@ -19,7 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-
+    @Autowired
+    private TokenVerification tokenVerification;
 
     @Bean
     public SecurityFilterChain filterSecurityChain(HttpSecurity httpSecurity) throws Exception {
@@ -34,7 +35,7 @@ public class SecurityConfig {
                         .hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .addFilterBefore(
-                    validateToken,
+                    tokenVerification,
                     UsernamePasswordAuthenticationFilter.class
                 )
                 .build();

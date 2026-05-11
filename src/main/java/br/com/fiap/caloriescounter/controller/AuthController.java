@@ -1,7 +1,9 @@
 package br.com.fiap.caloriescounter.controller;
 
+import br.com.fiap.caloriescounter.config.security.TokenService;
 import br.com.fiap.caloriescounter.dto.RegisterUserDTO;
 import br.com.fiap.caloriescounter.dto.ShowUserDTO;
+import br.com.fiap.caloriescounter.model.User;
 import br.com.fiap.caloriescounter.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,9 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login (
             @RequestBody
@@ -33,7 +38,11 @@ public class AuthController {
                         userDTO.email(), userDTO.password()
                 );
         Authentication auth = authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok(auth.getPrincipal());
+
+
+        String token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(token);
     }
 
     @PostMapping("/register")
