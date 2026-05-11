@@ -15,12 +15,14 @@ import java.time.ZoneOffset;
 
 @Service
 public class TokenService {
-    @Value("my.secret.keyword")
+    @Value("${my.secret.keyword}")
     private String keyword;
+
 
     public String generateToken(User user) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(keyword);
+            System.out.println(keyword);
 
             String token = JWT.create()
                     .withIssuer("caloriescounter")
