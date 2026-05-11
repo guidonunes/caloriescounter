@@ -26,22 +26,18 @@ public class TokenVerification extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorizationHeader = request.getHeader("Authorization");
+        String token = "";
 
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            String token = authorizationHeader.substring(7).trim();
+        if(authorizationHeader == null){
+            token = null;
+        } else {
+            token = authorizationHeader.replace("Bearer ", "").trim();
             String login = tokenService.validateToken(token);
+            UserDetails user = userRepository.findByEmail(login);
 
-            if (login != null && !login.isBlank() && SecurityContextHolder.getContext().getAuthentication() == null) {
-                UserDetails user = userRepository.findByEmail(login);
-
-                if (user != null) {
-                    UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-
-                    authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    SecurityContextHolder.getContext().setAuthentication(authentication);
-                }
-            }
+            UsernamePasswordAuthenticationToken authentication =
+                    new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
         filterChain.doFilter(request, response);
