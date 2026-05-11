@@ -28,10 +28,10 @@ public class TokenVerification extends OncePerRequestFilter {
         String authorizationHeader = request.getHeader("Authorization");
         String token = "";
 
-        if(authorizationHeader != null){
+        if(authorizationHeader == null){
             token = null;
         } else {
-            token = authorizationHeader.replace("Bearer ", "").trim();
+            token = authorizationHeader.replace("Bearer", "").trim();
             String login = tokenService.validateToken(token);
             UserDetails user = userRepository.findByEmail(login);
 
