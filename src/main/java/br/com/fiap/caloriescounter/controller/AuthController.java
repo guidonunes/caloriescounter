@@ -29,14 +29,14 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity login (
             @RequestBody
-            @Valid
             RegisterUserDTO userDTO
 
     ) {
         UsernamePasswordAuthenticationToken usernamePassword =
                 new UsernamePasswordAuthenticationToken(
-                        userDTO.email(), userDTO.password()
-                );
+                        userDTO.email(),
+                        userDTO.password());
+
         Authentication auth = authenticationManager.authenticate(usernamePassword);
 
 
